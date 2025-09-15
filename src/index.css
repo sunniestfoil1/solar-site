@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Solaris Solar Energy Design System - Brand Colors and Effects */
+
+@layer base {
+  :root {
+    /* Brand Colors - Solaris Solar Energy */
+    --background: 0 0% 100%;
+    --foreground: 210 40% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 8%;
+
+    /* Primary - Deep Corporate Blue */
+    --primary: 211 100% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Solar Energy Orange/Yellow */
+    --secondary: 45 100% 51%;
+    --secondary-foreground: 210 40% 8%;
+
+    /* Accent - Sustainability Green */
+    --accent: 134 61% 41%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Muted - Light Gray Background */
+    --muted: 210 17% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 211 100% 20%;
+
+    --radius: 0.75rem;
+
+    /* Solar Energy Gradients */
+    --gradient-solar: linear-gradient(135deg, hsl(45 100% 51%), hsl(39 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(211 100% 20%) 0%, hsl(134 61% 41%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 17% 98%) 100%);
+
+    /* Solar Energy Shadows */
+    --shadow-solar: 0 10px 40px -12px hsl(45 100% 51% / 0.25);
+    --shadow-card: 0 4px 25px -5px hsl(211 100% 20% / 0.1);
+    --shadow-hero: 0 25px 50px -12px hsl(211 100% 20% / 0.25);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Sidebar (keeping original) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 211 100% 7%;
+    --foreground: 0 0% 100%;
+
+    --card: 211 100% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 211 100% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 45 100% 51%;
+    --primary-foreground: 211 100% 7%;
+
+    --secondary: 211 50% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 211 50% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 134 61% 41%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 31%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 211 50% 15%;
+    --input: 211 50% 15%;
+    --ring: 45 100% 51%;
+
+    /* Dark mode gradients */
+    --gradient-solar: linear-gradient(135deg, hsl(45 100% 51%), hsl(39 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(211 100% 7%) 0%, hsl(211 100% 15%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(211 100% 10%) 0%, hsl(211 50% 12%) 100%);
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+
+  /* Typography Classes */
+  .heading-primary {
+    @apply font-orbitron font-semibold;
+  }
+
+  .heading-secondary {
+    @apply font-rajdhani font-medium;
+  }
+
+  .body-text {
+    @apply font-inter;
+  }
+
+  /* Solar Energy Animations */
+  @keyframes solar-glow {
+    0% { box-shadow: 0 0 20px hsl(45 100% 51% / 0.3); }
+    50% { box-shadow: 0 0 30px hsl(45 100% 51% / 0.5); }
+    100% { box-shadow: 0 0 20px hsl(45 100% 51% / 0.3); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-solar-glow {
+    animation: solar-glow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes spotlight {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes beams {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(134 61% 41% / 0.3);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 30px hsl(134 61% 41% / 0.5);
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .spotlight-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(45 100% 51% / 0.1),
+      transparent
+    );
+    transition: left 0.5s ease;
+    z-index: 1;
+  }
+
+  .spotlight-card:hover::before {
+    left: 100%;
+  }
+
+  /* Beams Background */
+  .beams-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .beams-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      hsl(45 100% 51% / 0.05) 50%,
+      transparent 70%
+    );
+    animation: beams 8s linear infinite;
+    z-index: 0;
+  }
+
+  .beams-bg > * {
+    position: relative;
+    z-index: 1;
+  }
+}
