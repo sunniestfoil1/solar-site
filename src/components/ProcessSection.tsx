@@ -1,5 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, FileText, Settings, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation, fadeInUp, staggerContainer, scaleIn } from "@/hooks/useScrollAnimation";
 
 const processSteps = [
   {
@@ -29,40 +31,57 @@ const processSteps = [
 ];
 
 const ProcessSection = () => {
+  const titleAnimation = useScrollAnimation();
+  const stepsAnimation = useScrollAnimation();
+
   return (
     <section className="py-20 bg-gradient-hero text-gray-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div 
+          ref={titleAnimation.ref}
+          initial="hidden"
+          animate={titleAnimation.isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Gere sua Própria Energia em 4 Passos Simples
           </h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
             Do primeiro contato até começar a economizar, nosso processo é transparente e eficiente
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div 
+          ref={stepsAnimation.ref}
+          initial="hidden"
+          animate={stepsAnimation.isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {processSteps.map((step, index) => (
-            <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-gray-900 group hover:bg-white/20 transition-all duration-300">
-              <CardHeader className="text-center pb-4">
-                <div className="relative mx-auto mb-4">
-                  <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <step.icon className="w-8 h-8 text-secondary-foreground" />
+            <motion.div key={index} variants={scaleIn}>
+              <Card className="bg-gray-200/80 backdrop-blur-sm border-gray-300/30 text-gray-900 group hover:bg-gray-300/80 transition-all duration-300">
+                <CardHeader className="text-center pb-4">
+                  <div className="relative mx-auto mb-4">
+                    <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <step.icon className="w-8 h-8 text-secondary-foreground" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white text-primary rounded-full flex items-center justify-center text-sm font-bold">
+                      {step.step}
+                    </div>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-white text-primary rounded-full flex items-center justify-center text-sm font-bold">
-                    {step.step}
-                  </div>
-                </div>
-                <CardTitle className="text-xl font-bold">{step.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center text-gray-700 text-base leading-relaxed">
-                  {step.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+                  <CardTitle className="text-xl font-bold">{step.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center text-gray-700 text-base leading-relaxed">
+                    {step.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Connection lines for desktop */}
         <div className="hidden lg:block relative mt-8">

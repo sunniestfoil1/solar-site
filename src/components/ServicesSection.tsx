@@ -1,5 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Home, Building2, Tractor } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation, fadeInUp, staggerContainer, rotateScale } from "@/hooks/useScrollAnimation";
 
 const services = [
   {
@@ -20,10 +22,19 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const titleAnimation = useScrollAnimation();
+  const cardsAnimation = useScrollAnimation();
+
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div 
+          ref={titleAnimation.ref}
+          initial="hidden"
+          animate={titleAnimation.isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl mb-4 heading-primary">
             Soluções Completas em Energia Solar
           </h2>
@@ -34,25 +45,36 @@ const ServicesSection = () => {
             Oferecemos um serviço completo, desde o dimensionamento do seu projeto até a homologação e o monitoramento. 
             Veja como podemos te ajudar a gerar sua própria energia:
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div 
+          ref={cardsAnimation.ref}
+          initial="hidden"
+          animate={cardsAnimation.isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {services.map((service, index) => (
-            <Card key={index} className="group spotlight-card hover:shadow-card transition-all duration-300 hover:-translate-y-2 bg-gradient-card border-0">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors duration-300">
-                  <service.icon className="w-8 h-8 text-primary-foreground group-hover:text-secondary-foreground" />
-                </div>
-                <CardTitle className="text-xl heading-secondary">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center text-base leading-relaxed body-text">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <motion.div key={index} variants={fadeInUp}>
+              <Card className="group spotlight-card hover:shadow-card transition-all duration-300 hover:-translate-y-2 bg-gradient-card border-0">
+                <CardHeader className="text-center pb-4">
+                  <motion.div 
+                    variants={rotateScale}
+                    className="mx-auto w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors duration-300"
+                  >
+                    <service.icon className="w-8 h-8 text-primary-foreground group-hover:text-secondary-foreground" />
+                  </motion.div>
+                  <CardTitle className="text-xl heading-secondary">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center text-base leading-relaxed body-text">
+                    {service.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

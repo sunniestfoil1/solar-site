@@ -14,7 +14,7 @@ import { Header1 } from "@/components/ui/header";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full overflow-x-hidden">
       <Header1 />
       <div id="home">
         <HeroSection />

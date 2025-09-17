@@ -30,7 +30,7 @@ const differentials = [
 
 const DifferentialsSection = () => {
   return (
-    <section className="py-20 bg-background beams-bg">
+    <section className="py-12 md:py-20 bg-background beams-bg relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl mb-4 heading-primary">
@@ -39,15 +39,29 @@ const DifferentialsSection = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto heading-secondary">
             Sua <strong>Segurança</strong> e <strong>Economia</strong> em Primeiro Lugar
           </p>
-          <p className="text-lg text-muted-foreground mt-4 max-w-4xl mx-auto body-text">
+          <p className="text-lg text-muted-foreground mt-12 max-w-3xl mx-auto body-text">
             Nossa missão é entregar a melhor solução em energia solar, com transparência e excelência técnica. 
             Conheça nossos diferenciais:
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto px-2 sm:px-0 sm:-ml-[100px] md:-ml-[150px] lg:-ml-[200px]">
           <HoverEffect items={differentials} />
         </div>
+
+        {/* Imagem para Mobile */}
+        <img 
+          src="public/paineis.png" 
+          alt="Painel Solar" 
+          className="absolute top-[350px] -left-[0px] w-82 h-auto opacity-70 block lg:hidden"
+        />
+        
+        {/* Imagem para PC */}
+        <img 
+          src="public/paineis.png" 
+          alt="Painel Solar" 
+          className="absolute top-[200px] -right-[400px] w-34 h-auto opacity-80 hidden lg:block"
+        />
       </div>
     </section>
   );
