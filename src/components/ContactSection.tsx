@@ -85,15 +85,6 @@ Aguardo retorno. Obrigado!`;
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto relative">
-          {/* Background Image */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10 scale-150 opacity-10"
-            style={{
-              backgroundImage: "url('/componente.png')",
-            }}
-            aria-hidden="true"
-          ></div>
-          
           {/* Contact Form */}
           <motion.div
             ref={formAnimation.ref}
